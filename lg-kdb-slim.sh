@@ -66,4 +66,52 @@ wget https://raw.githubusercontent.com/aa1024/datetimeQ/master/libs/dtf.q  #dtf.
 wget https://raw.githubusercontent.com/AquaQAnalytics/grafana-kdb/master/grafana.q  # AquaQ grafana adapter
 mv grafana.q gfa.q
 
+# configure .emacs file (MELPA + q-mode)
+cd ~
+cat <<EOF >> .emacs
+(require 'package)
+(let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
+                    (not (gnutls-available-p))))
+       (proto (if no-ssl "http" "https")))
+  (when no-ssl
+    (warn "\
+Your version of Emacs does not support SSL connections,
+which is unsafe because it allows man-in-the-middle attacks.
+There are two things you can do about this warning:
+1. Install an Emacs version that does support SSL and be safe.
+2. Remove this warning from your init file so you won't see it again."))
+  ;; Comment/uncomment these two lines to enable/disable MELPA and MELPA Stable as desired
+  (add-to-list 'package-archives (cons "melpa" (concat proto "://melpa.org/packages/")) t)
+  ;;(add-to-list 'package-archives (cons "melpa-stable" (concat proto "://stable.melpa.org/packages/")) t)
+  (when (< emacs-major-version 24)
+    ;; For important compatibility libraries like cl-lib
+    (add-to-list 'package-archives (cons "gnu" (concat proto "://elpa.gnu.org/packages/")))))
+(package-initialize)
 
+;; q-mode Setup
+(add-to-list 'load-path "/home/fuxi/")
+(autoload 'q-mode "q-mode")
+(add-to-list 'auto-mode-alist '("\\.[kq]\\'" . q-mode))
+
+(defun remove-ess-q-extn ()
+ (when (assoc "\\.[qsS]\\'" auto-mode-alist)
+  (setq auto-mode-alist
+        (remassoc "\\.[qsS]\\'" auto-mode-alist))))
+(add-hook 'ess-mode-hook 'remove-ess-q-extn)
+(add-hook 'inferior-ess-mode-hook 'remove-ess-q-extn)
+
+EOF
+
+# add new paths to .bashrc 
+cat <<EOF >> .bashrc
+
+export ODBCINI=~/.odbc.ini
+export ODBCSYSINI=/etc
+
+export PATH=$PATH:~/q/l32
+export QHOME=~/q
+alias q="rlwrap ~/q/l32/q"
+
+EOF
+
+source bashrc  # source the update bashrc to apply the changes
