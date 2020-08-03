@@ -38,9 +38,9 @@ wget https://raw.githubusercontent.com/psaris/q-mode/master/q-mode.el
 
 # install odbc for kdb (https://code.kx.com/q/interfaces/q-client-for-odbc/)
 cd q/l32/
-wget https://raw.github.com/KxSystems/kdb/tree/master/c/odbc.k  # get odbc.k
-wget https://raw.github.com/KxSystems/kdb/blob/master/l32/odbc.so  # linux 32-bit odbc.so
-wget https://raw.github.com/KxSystems/kdb/blob/master/l32/qcon
+wget https://raw.githubusercontent.com/KxSystems/kdb/master/c/odbc.k  # get odbc.k
+wget https://github.com/KxSystems/kdb/raw/master/l32/odbc.so  # linux 32-bit odbc.so
+wget https://github.com/KxSystems/kdb/raw/master/l32/qcon 
 
 cd ~
 apt-get install -y unixodbc:i386
@@ -49,9 +49,9 @@ apt-get install -y odbc-postgresql:i386
 
 # install essential kdb packages
 cd q/l32/
-wget https://raw.github.com/jonathonmcmurray/reQ/blob/master/req/req.q  # req.q
-wget https://raw.github.com/aa1024/datetimeQ/blob/master/libs/dtf.q  # dtf.q
-wget https://raw.github.com/AquaQAnalytics/grafana-kdb/blob/master/grafana.q  # AquaQ grafana adapter
+wget https://raw.githubusercontent.com/jonathonmcmurray/reQ/master/req/req.q  # req.q
+wget https://raw.githubusercontent.com/aa1024/datetimeQ/master/libs/dtf.q  #dtf.q
+wget https://raw.githubusercontent.com/AquaQAnalytics/grafana-kdb/master/grafana.q  # AquaQ grafana adapter
 mv grafana.q gfa.q
 
 
