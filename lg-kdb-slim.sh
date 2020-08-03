@@ -1,8 +1,20 @@
 #!/bin/bash
 #
 # Script to Install
-# Linux System Tools and Basic Python Components
-# 
+# Linux System Tools & kdbq Essentials (32-bit)
+# (primarily used for setting up work dev server)
+#
+# Installs:
+# 1) essential system tools
+# 2) kdbq 32-bit + q-odbc intergation files  
+# 3) unix odbc (i386)
+# 4) postgres odbc driver (i386)
+# 5) q libraries
+#    - req.q (for http GET/POST)
+#    - dtf.q (q time formating library)
+#    - gfa.q (q grafana adapter)
+#
+#
 # (c) Parv Patel
 #
 
