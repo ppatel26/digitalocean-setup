@@ -22,7 +22,7 @@ apt-get upgrade -y bash  # upgrades bash if necessary
 apt-get clean  # cleans up the package index cache
 
 # kdb specific
-apt-get install libssl1.0.0:i386  # compatible ssl 1.0.0  
+apt-get install -y libssl1.0.0:i386  # compatible ssl 1.0.0  
 cd /usr/lib/i386-linux-gnu/
 ln -s libssl.so.1.0.0 libssl.so  # link libssl.so.1.0.0 --> libssl.so
 
@@ -43,8 +43,8 @@ wget https://github.com/KxSystems/kdb/blob/master/l32/odbc.so  # linux 32-bit od
 wget https://github.com/KxSystems/kdb/blob/master/l32/qcon
 
 cd ~
-apt-get install unixodbc:i386
-apt-get install odbc-postgresql:i386
+apt-get install -y unixodbc:i386
+apt-get install -y odbc-postgresql:i386
 
 
 # install essential kdb packages
