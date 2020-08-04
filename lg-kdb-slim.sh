@@ -114,4 +114,4 @@ alias q="rlwrap ~/q/l32/q"
 
 EOF
 
-source bashrc  # source the update bashrc to apply the changes
+source .bashrc  # source the update bashrc to apply the changes
