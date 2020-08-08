@@ -29,7 +29,7 @@ dpkg --add-architecture i386
 # GENERAL LINUX
 apt-get update  # updates the package index cache
 apt-get upgrade -y
-apt-get install -y git screen htop wget curl emacs unzip gzip emacs rlwrap  # installs system tools
+apt-get install -y build-essential git cmake screen htop wget curl emacs unzip gzip emacs rlwrap  # installs system tools
 apt-get upgrade -y bash  # upgrades bash if necessary
 apt-get clean  # cleans up the package index cache
 
@@ -45,11 +45,13 @@ unzip linuxx86.zip
 rm linuxx86.zip  # clean-up 
 
 # install q-mode (for emacs q)
-wget https://raw.githubusercontent.com/psaris/q-mode/master/q-mode.el
+mkdir .emacs.d
+cd ~/.emacs.d/
+git clone https://github.com/psaris/q-mode.git
 
 
 # install odbc for kdb (https://code.kx.com/q/interfaces/q-client-for-odbc/)
-cd q/l32/
+cd ~/q/l32/
 wget https://raw.githubusercontent.com/KxSystems/kdb/master/c/odbc.k  # get odbc.k
 wget https://github.com/KxSystems/kdb/raw/master/l32/odbc.so  # linux 32-bit odbc.so
 wget https://github.com/KxSystems/kdb/raw/master/l32/qcon 
@@ -60,7 +62,7 @@ apt-get install -y odbc-postgresql:i386
 
 
 # install essential kdb packages
-cd q/l32/
+cd ~/q/l32/
 wget https://raw.githubusercontent.com/jonathonmcmurray/reQ/master/req/req.q  # req.q
 wget https://raw.githubusercontent.com/aa1024/datetimeQ/master/libs/dtf.q  #dtf.q
 wget https://raw.githubusercontent.com/AquaQAnalytics/grafana-kdb/master/grafana.q  # AquaQ grafana adapter
@@ -68,7 +70,7 @@ mv grafana.q gfa.q
 
 # configure .emacs file (MELPA + q-mode)
 cd ~
-cat <<EOF >> .emacs
+cat <<EOF >> ~/.emacs.d/init.el
 (require 'package)
 (let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
                     (not (gnutls-available-p))))
@@ -89,7 +91,7 @@ There are two things you can do about this warning:
 (package-initialize)
 
 ;; q-mode Setup
-(add-to-list 'load-path "/home/fuxi/")
+(add-to-list 'load-path "~/.emacs.d/q-mode/")
 (autoload 'q-mode "q-mode")
 (add-to-list 'auto-mode-alist '("\\.[kq]\\'" . q-mode))
 
