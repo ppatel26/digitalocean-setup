@@ -40,7 +40,7 @@ ln -s libssl.so.1.0.0 libssl.so  # link libssl.so.1.0.0 --> libssl.so
 
 # intall kdbq
 cd ~
-wget https://kx.com/347_d0szre-fr8917_llrsT4Yle-5839sdX/3.6/linuxx86.zip
+wget https://kx.com/wp-content/uploads/2020/10/linuxx86.zip
 unzip linuxx86.zip
 rm linuxx86.zip  # clean-up 
 
