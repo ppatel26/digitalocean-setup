@@ -56,6 +56,9 @@ wget https://raw.githubusercontent.com/KxSystems/kdb/master/c/odbc.k  # get odbc
 wget https://github.com/KxSystems/kdb/raw/master/l32/odbc.so  # linux 32-bit odbc.so
 wget https://github.com/KxSystems/kdb/raw/master/l32/qcon 
 
+# Give appropriate permissions to `qcon` (https://www.washington.edu/computing/unix/permissions.html)
+chmod a+x qcon
+
 cd ~
 apt-get install -y unixodbc:i386
 apt-get install -y odbc-postgresql:i386
